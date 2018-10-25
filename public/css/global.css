@@ -1,0 +1,9 @@
+.select2-selection--multiple{
+    height: 50px !important;
+}
+.select2-search__field{
+    margin: 0 !important;
+}
+input{
+    text-transform: none !important;
+}
