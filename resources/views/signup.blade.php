@@ -49,7 +49,7 @@
                                             </div>
                                             <!--Form Group-->
                                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" name="phone" placeholder="Telefon">
+                                                <input type="text" name="phone" id="personal-phone" placeholder="Telefon">
                                             </div>
                                             <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
                                                 <button class="btn btn-primary login_btn" type="submit"> Kayıt Ol </button>
@@ -89,7 +89,7 @@
                                             <!--Form Group-->
                                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                                <input type="text" name="phone" value="" placeholder="Telefon">
+                                                <input type="text" name="phone" value="" id="company-phone" placeholder="Telefon">
                                             </div>
                                             <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
                                                 <button href="#" class="btn btn-primary login_btn" type="submit"> Kayıt Ol </button>
@@ -113,6 +113,12 @@
     <!-- jp register wrapper end -->
 @endsection
 @section('js')
-
     <script src="js/custom_II.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#personal-phone').mask('000-000-00-00');
+            $('#company-phone').mask('000-000-00-00');
+        });
+    </script>
 @endsection

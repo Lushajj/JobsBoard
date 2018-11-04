@@ -20,3 +20,14 @@ Route::get('/login', 'UserController@show')->name('login');
 Route::get('/signup', 'SignupController@show')->name('signup');
 Route::post('/signup', 'SignupController@person_register');
 Route::post('/signupcompany', 'SignupController@company_register')->name('company-register');
+
+Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
+    Route::redirect('/','admin/oturumac');
+    Route::match(['get','post'],'/oturumac','UsersController@login')->name('admin.oturumac');
+
+    Route::group(['middleware' => 'admin'], function(){
+        Route::get('anasayfa','HomeController@show')->name('admin.home');
+        Route::get('company','CompanyController@show')->name('admin.company');
+    });
+
+});

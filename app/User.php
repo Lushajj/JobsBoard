@@ -9,4 +9,9 @@ class User extends Authenticatable
 {
     protected $table = "users";
     protected $guarded =[];
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 }
