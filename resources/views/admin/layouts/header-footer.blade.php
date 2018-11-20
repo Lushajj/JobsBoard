@@ -22,6 +22,7 @@
         <link href="libs/sortable/sortable-theme-bootstrap.css" rel="stylesheet" />
         <link href="libs/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
         <link href="libs/jquery-icheck/skins/all.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.min.css" />
         <!-- Code Highlighter for Demo -->
         <link href="libs/prettify/github.css" rel="stylesheet" />
 
@@ -100,6 +101,7 @@
 	<script src="js/apps/todo.js"></script>
 	<script src="js/apps/notes.js"></script>
 	<script src="js/pages/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.min.js"></script>
     @yield('js')
 	</body>
 </html>

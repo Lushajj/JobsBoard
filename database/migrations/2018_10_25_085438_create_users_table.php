@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('personal')->default(0);
             $table->boolean('company')->default(0);
             $table->boolean('admin')->default(0);
+            $table->string('status')->default('bekleme');
             $table->string('remember_token', 100)->nullable();
             $table->timestamps();
         });

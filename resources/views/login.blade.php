@@ -42,15 +42,17 @@
 					<div class="col-md-8 col-md-offset-2">
 						<!-- login_wrapper -->
 						<h1>Giriş Yap</h1>
-						<div class="login_wrapper">
+						<form class="login_wrapper" method="post" action="{{ route('login-control') }}">
+                            {{ csrf_field() }}
+                            @include('layouts.errors')
 							<div class="formsix-pos">
 								<div class="form-group i-email">
-									<input type="email" class="form-control" required="" id="email2" placeholder="Username*">
+									<input type="text" class="form-control" required="" id="email2" placeholder="E mail*" name="name">
 								</div>
 							</div>
 							<div class="formsix-e">
 								<div class="form-group i-password">
-									<input type="password" class="form-control" required="" id="password2" placeholder="Password *">
+									<input type="password" class="form-control" required="" id="password2" placeholder="Password *" name="password">
 								</div>
 							</div>
 							<div class="login_remember_box">
@@ -63,12 +65,12 @@
 								</a>
 							</div>
 							<div class="login_btn_wrapper">
-								<a href="#" class="btn btn-primary login_btn"> Giriş Yap </a>
+								<button type="submit" class="btn btn-primary login_btn"> Giriş Yap </button>
 							</div>
 							<div class="login_message">
 								<p>Üye değilmisin  <a href="#"> Kayıt Ol </a> </p>
 							</div>
-						</div>
+						</form>
 						<!-- /.login_wrapper-->
 					</div>
 				</div>

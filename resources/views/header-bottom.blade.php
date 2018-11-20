@@ -13,12 +13,14 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="jp_top_header_right_wrapper">
-                    <div class="jp_top_header_right_cont">
-                        <ul>
-                            <li><a href="{{ route('signup') }}"><i class="fa fa-user"></i>&nbsp; SIGN UP</a></li>
-                            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i>&nbsp; LOGIN</a></li>
-                        </ul>
-                    </div>
+                    @guest
+                        <div class="jp_top_header_right_cont">
+                            <ul>
+                                <li><a href="{{ route('signup') }}"><i class="fa fa-user"></i>&nbsp; SIGN UP</a></li>
+                                <li><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i>&nbsp; LOGIN</a></li>
+                            </ul>
+                        </div>
+                    @endguest
                     <div class="jp_top_header_right__social_cont">
                         <ul>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -233,6 +235,7 @@
                     </div>
                 </div>
                 <!-- mobile menu area end -->
+                @auth
                 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 hidden-sm hidden-xs">
                     <div class="jp_navi_right_btn_wrapper">
                         <ul>
@@ -240,6 +243,7 @@
                         </ul>
                     </div>
                 </div>
+                @endauth
             </div>
         </div>
     </div>

@@ -127,7 +127,7 @@
                     </li>
                     <li class="dropdown iconify hide-phone"><a href="#" onclick="javascript:toggle_fullscreen()"><i class="icon-resize-full-2"></i></a></li>
                     <li class="dropdown topbar-profile">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="rounded-image topbar-profile-image"><img src="img/users/user-35.jpg"></span>{{ $auth_name }}<i class="fa fa-caret-down"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="rounded-image topbar-profile-image"><img src="img/users/user-35.jpg"></span>{{ $auth_name->name }}<i class="fa fa-caret-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a class="md-trigger" data-modal="logout-modal"><i class="icon-logout-1"></i> Logout</a></li>
                         </ul>
@@ -157,7 +157,7 @@
                       <a href="profile.html" class="rounded-image profile-image"><img src="img/users/user-100.jpg"></a>
                     </div>
                     <div class="col-xs-8">
-                        <div class="profile-text">Hoşgeldin <b>{{ $auth_name }}</b></div>
+                        <div class="profile-text">Hoşgeldin <b>{{ $auth_name->name }}</b></div>
                         <div class="profile-buttons">
                           <a href="javascript:;"><i class="fa fa-envelope-o pulse"></i></a>
                           <a href="#connect" class="open-right"><i class="fa fa-comments"></i></a>
@@ -173,7 +173,7 @@
                 <div id="sidebar-menu">
                     <ul>
                         <li><a href="{{ route('admin.home') }}"><i class='icon-home-3'></i><span>Kontrol Paneli</span></a></li>
-                        <li><a href="{{ route('admin.company') }}"><i class="fa fa-building-o" aria-hidden="true"></i><span>Firmalar</span></a></li>
+                        <li><a href="{{ route('admin.company') }}"><i class="fa fa-building-o" aria-hidden="true"></i><span>Firmalar( <b>{{ $bekleme_sayi }}</b> )</span></a></li>
                         <li><a href='javascript:void(0);'><i class="fa fa-user" aria-hidden="true"></i><span>Kişisel</span></a></li>
                         <li><a href='javascript:void(0);'><i class="fa fa-barcode" aria-hidden="true"></i><span>İlanlar</span></a></li>
                     </ul>

@@ -207,10 +207,18 @@
                     <!-- mobile menu area end -->
                     <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs">
                         <div class="jp_navi_right_btn_wrapper">
-                            <ul>
-                                <li><a href="{{ route('signup') }}"><i class="fa fa-user"></i>&nbsp; Kayıt Ol</a></li>
-                                <li><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i>&nbsp; Giriş Yap</a></li>
-                            </ul>
+                            @guest
+                                <ul>
+                                    <li><a href="{{ route('signup') }}"><i class="fa fa-user"></i>&nbsp; Kayıt Ol</a></li>
+                                    <li><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i>&nbsp; Giriş Yap</a></li>
+                                </ul>
+                            @endguest
+                            @auth
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-user"></i>&nbsp; {{ $auth_name->name }}</a></li>
+                                    <li><a href="{{ route('logout') }}"><i class="fa fa-user"></i>&nbsp; Çıkış Yap</a></li>
+                                </ul>
+                            @endauth
                         </div>
                     </div>
                 </div>

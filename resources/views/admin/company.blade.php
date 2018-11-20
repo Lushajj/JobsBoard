@@ -1,4 +1,7 @@
 @extends('admin.layouts.header-footer')
+@section('css')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 @section('body')
 <body class="fixed-left">
         @include('admin.layouts.sidebar')
@@ -32,13 +35,6 @@
 											<input type="text" class="form-control" placeholder="Search...">
 											</form>
 										</div>
-										<div class="col-md-8">
-											<div class="toolbar-btn-action">
-												<a class="btn btn-success"><i class="fa fa-plus-circle"></i> Add new</a>
-												<a class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</a>
-												<a class="btn btn-primary"><i class="fa fa-refresh"></i> Update</a>
-											</div>
-										</div>
 									</div>
 								</div>
 
@@ -48,8 +44,8 @@
 											<tr>
 												<th>No</th>
 												<th>Resim</th>
-												<th style="width: 30px" data-sortable="false"><input type="checkbox" class="rows-check"></th>
 												<th>Firma Adı</th>
+												<th>Durum</th>
 												<th>Email</th>
 											</tr>
 										</thead>
@@ -59,18 +55,18 @@
                                                 <tr>
     												<td>{{ $row->id }}</td>
     												<td><img src="{{ $row->img }}" alt=""></td>
-                                                    <td><input type="checkbox" class="rows-check"></td>
                                                     <td><strong>{{ $row->name }}</strong></td>
+                                                    <td>{!! $row->status == 'aktif' ? '<span style="cursor:pointer;" class="label label-success" data-id="'.$row->id.'" onclick="status(this);">Aktif </span>' : '<span style="cursor:pointer;" class="label label-warning" data-id="'.$row->id.'" onclick="status(this);">Beklemede </span>' !!}</td>
     												<td>{{ $row->email }}</td>
     												<td>
     													<div class="btn-group btn-group-xs">
-    														<a data-toggle="tooltip" title="Off" class="btn btn-default"><i class="fa fa-power-off"></i></a>
-    														<a data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-edit"></i></a>
+    														<a {!! "data-id='".$row->id."'" !!} onclick="sil(this);" data-toggle="tooltip" title="Sil" class="btn btn-default"><i class="fa fa-trash"></i></a>
     													</div>
     												</td>
     											</tr>
                                             @endforeach
 										</tbody>
+
 									</table>
 								</div>
 
@@ -102,4 +98,72 @@
 	</div>
 	<!-- End of page -->
 
+    @endsection
+    @section('js')
+        <script type="text/javascript">
+            function sil(elem){
+                var dataid = $(elem).data("id");
+                var a=$(elem).parent();
+                var b = a.parent();
+                var c = b.parent();
+                $.ajaxSetup({
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+                });
+                $.ajax({
+                    type: "post",
+                    dataType: 'json',
+                    url: "{{ route('admin.company.delete') }}",
+                    data: {
+                        id: dataid
+                    },
+                    success: function( msg ) {
+                        $(elem).fadeOut(500, function() { c.remove(); });
+                        swal({
+                          title: 'Başarılı!',
+                          text: 'Firma başarılı bir şekilde silindi.',
+                          type: 'success',
+                          confirmButtonText: 'Devam Et'
+                        })
+                    }
+                });
+            }
+            function status(elem) {
+                var dataid = $(elem).data("id");
+                var status;
+                var sinif;
+                if ($(elem).text()=='Aktif ') {
+                    status = 'beklemede ';
+                    sinif = 'label label-warning';
+                }
+                else if($(elem).text()=='aktif '){
+                    status = 'beklemede ';
+                    sinif = 'label label-warning';
+                }
+                else{
+                    status = 'aktif ';
+                    sinif = 'label label-success';
+                }
+                $.ajaxSetup({
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+                });
+                $.ajax({
+                    type: "post",
+                    dataType: 'json',
+                    url: "{{ route('admin.company.status') }}",
+                    data: {
+                        id: dataid,
+                        status: status,
+                    },
+                    success: function( msg ) {
+                        $(elem).html(status);
+                        $(elem).removeClass();
+                        $(elem).addClass(sinif);
+                    }
+                });
+            }
+        </script>
     @endsection
